@@ -65,13 +65,13 @@ Hospital Management System/
 
 ---
 
-# How to Run the Hospital Management System Project ?
+## How to Run the Hospital Management System Project ?
 
-## Prerequisites
+### Prerequisites
 - Java Development Kit (JDK 8 or higher)
 - MySQL or compatible database server
 
-## Setup Steps
+### Setup Steps
 
 1. **Clone or Download the Project**
    - Copy the entire project folder to your machine.
@@ -107,7 +107,7 @@ Hospital Management System/
    - Import the project into IntelliJ IDEA, Eclipse, or NetBeans.
    - Set the main class to `HospitalManagementSystem.HospitalManagementSystem`.
 
-## Notes
+### Notes
 - Ensure any required external libraries (JARs) are included in the classpath.
 - Update connection details if your database setup differs.
 
