@@ -55,6 +55,22 @@ public class Doctor {
         }
     }
 
+    public void deleteDoctorById(int id){
+        String query = "DELETE FROM doctors WHERE id = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Doctor deleted successfully.");
+            } else {
+                System.out.println("Failed to delete doctor or doctor not found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean getDoctorById(int id){
         String query = "SELECT * FROM doctors WHERE id = ?";
         try{
