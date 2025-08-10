@@ -98,8 +98,13 @@ private static final String password = "yourpassword";
 
 ## 📸 Screenshots
 
-**Main Menu**
-![Main Menu Screenshot](assets/main-menu.png)
+## Main Menu
+<p align="center">
+  <img src="Main%20Menu.png" alt="Main Menu Screenshot" width="500"/>
+</p>
+
+## Database Schema
+
 
 ---
 
