@@ -29,7 +29,8 @@ public class HospitalManagementSystem {
                 System.out.println("3. View Doctors");
                 System.out.println("4. Book Appointment");
                 System.out.println("5. View Appointments");
-                System.out.println("6. Exit");
+                System.out.println("6. Cancel Appointment");
+                System.out.println("7. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -60,6 +61,10 @@ public class HospitalManagementSystem {
                         System.out.println();
                         break;
                     case 6 :
+                        cancelAppointment(connection, scanner);
+                        System.out.println();
+                        break;
+                    case 7 :
                         System.out.println("Thank you for using Hospital Management System. Have a nice day!");
                         return;
                     default:
@@ -197,6 +202,24 @@ public class HospitalManagementSystem {
             }
         }
 
+    }
+
+    public static void cancelAppointment(Connection connection, Scanner scanner){
+        System.out.print("Enter the Appointment ID to cancel the Appointment: ");
+        int appointmentId = scanner.nextInt();
+        String query = "DELETE FROM appointments WHERE id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, appointmentId);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected > 0){
+                System.out.println("Appointment with ID " + appointmentId + " has been cancelled successfully.");
+            } else {
+                System.out.println("No appointment found with ID " + appointmentId + ".");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public static boolean checkDoctorAvailability(int doctorId, String appointmentDate, Connection connection){
