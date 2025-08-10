@@ -66,16 +66,12 @@ public class Patient {
 
     public void deletePatientById(int id){
         String query = "DELETE FROM patients WHERE id = ?";
-        // Reset all the patient id
-        String resetQuery = "ALTER TABLE patients AUTO_INCREMENT = 1";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            PreparedStatement resetStatement = connection.prepareStatement(resetQuery);
             preparedStatement.setInt(1, id);
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows > 0) {
                 System.out.println("Patient deleted successfully.");
-                resetStatement.executeUpdate();
             } else {
                 System.out.println("No patient found with the given ID.");
             }
