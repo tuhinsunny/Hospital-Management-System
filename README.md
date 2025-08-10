@@ -104,7 +104,9 @@ private static final String password = "yourpassword";
 </p>
 
 ## Database Schema
-
+<p align="center">
+  <img src="Database_Schema.png" alt="Db Schema Screenshot" width="500"/>
+</p>
 
 ---
 
