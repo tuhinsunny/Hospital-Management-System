@@ -84,7 +84,7 @@ Hospital Management System/
    - Execute the script to create the database and tables.
 
 3. **Configure Database Connection**
-    - Update database credentials in the Java source code if needed (url, username, password).
+    - Update database credentials in the Java source code (HospitalManagementSystem.java) if needed (url, username, password).
     ```java
     private static final String url = "jdbc:mysql://localhost:3306/hospital_db";
     private static final String username = "root";
