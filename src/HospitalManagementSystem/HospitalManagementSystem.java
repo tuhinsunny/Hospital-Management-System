@@ -28,7 +28,8 @@ public class HospitalManagementSystem {
                 System.out.println("2. View Patients");
                 System.out.println("3. View Doctors");
                 System.out.println("4. Book Appointment");
-                System.out.println("5. Exit");
+                System.out.println("5. View Appointments");
+                System.out.println("6. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -54,6 +55,11 @@ public class HospitalManagementSystem {
                         System.out.println();
                         break;
                     case 5 :
+                        // View Appointments
+                        viewAppointments(connection, doctor, scanner);
+                        System.out.println();
+                        break;
+                    case 6 :
                         System.out.println("Thank you for using Hospital Management System. Have a nice day!");
                         return;
                     default:
@@ -100,6 +106,95 @@ public class HospitalManagementSystem {
         }
         else{
             System.out.println("Either Doctor or Patient doesn't exist!!");
+        }
+
+    }
+
+    public static void viewAppointments(Connection connection, Doctor doctor, Scanner scanner){
+        System.out.println("Do you want to view appointments for a specific doctor? (yes/no) ");
+        String response = scanner.next();
+        if(response.equalsIgnoreCase("yes")){
+            System.out.print("Enter Doctor ID to view appointments: ");
+            int doctorId = scanner.nextInt();
+            String query = "SELECT * FROM appointments WHERE doctor_id = ?";
+            try{
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, doctorId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(doctor.getDoctorById(doctorId)){
+                    System.out.println("Appointments for Doctor ID: " + doctorId);
+                    System.out.println("+----------------+----------------+---------------------+");
+                    System.out.println("| Appointment ID | Patient ID     | Appointment Date    |");
+                    System.out.println("+----------------+----------------+---------------------+");
+                    while(resultSet.next()){
+                        int appointmentId = resultSet.getInt("id");
+                        int patientId = resultSet.getInt("patient_id");
+                        String appointmentDate = resultSet.getString("appointment_date");
+                        System.out.printf("| %-14s | %-14s | %-19s |\n", appointmentId, patientId, appointmentDate);
+                        System.out.println("+----------------+----------------+---------------------+");
+                    }
+                }
+                else{
+                    System.out.println("Doctor with ID " + doctorId + " does not exist.");
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("Do you want to view appointments for a specific date? (yes/no)");
+            String dateResponse = scanner.next();
+            if(dateResponse.equalsIgnoreCase("yes")){
+                System.out.print("Enter appointment date (YYYY-MM-DD): ");
+                String appointmentDate = scanner.next();
+                String query = "SELECT * FROM appointments WHERE appointment_date = ?";
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, appointmentDate);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    System.out.println("Appointments on " + appointmentDate + ":");
+                    System.out.println("+----------------+----------------+---------------------+");
+                    System.out.println("| Appointment ID | Patient ID     | Doctor ID           |");
+                    System.out.println("+----------------+----------------+---------------------+");
+                    while(resultSet.next()){
+                        int appointmentId = resultSet.getInt("id");
+                        int patientId = resultSet.getInt("patient_id");
+                        int doctorId = resultSet.getInt("doctor_id");
+                        System.out.printf("| %-14s | %-14s | %-19s |\n", appointmentId, patientId, doctorId);
+                        System.out.println("+----------------+----------------+---------------------+");
+                    }
+                } catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                System.out.println("Do you want to view all appointments? (yes/no)");
+                String allResponse = scanner.next();
+                if(allResponse.equalsIgnoreCase("yes")){
+                    String query = "SELECT * FROM appointments";
+                    try{
+                        PreparedStatement preparedStatement = connection.prepareStatement(query);
+                        ResultSet resultSet = preparedStatement.executeQuery();
+                        System.out.println("All Appointments:");
+                        System.out.println("+----------------+----------------+---------------------+------------+");
+                        System.out.println("| Appointment ID | Patient ID     | Doctor ID           | Date       |");
+                        System.out.println("+----------------+----------------+---------------------+------------+");
+                        while(resultSet.next()){
+                            int appointmentId = resultSet.getInt("id");
+                            int patientId = resultSet.getInt("patient_id");
+                            int doctorId = resultSet.getInt("doctor_id");
+                            String appointmentDate = resultSet.getString("appointment_date");
+                            System.out.printf("| %-14s | %-14s | %-19s | %-10s |\n", appointmentId, patientId, doctorId, appointmentDate);
+                            System.out.println("+----------------+----------------+---------------------+------------+");
+                        }
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    System.out.println("Exiting appointment view.");
+                }
+            }
         }
 
     }
