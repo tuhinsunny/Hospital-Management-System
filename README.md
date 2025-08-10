@@ -65,32 +65,55 @@ Hospital Management System/
 
 ---
 
-## ⚡ How to Run Locally
+# How to Run the Hospital Management System Project ?
 
-1️⃣ **Clone the repository**
+## Prerequisites
+- Java Development Kit (JDK 8 or higher)
+- MySQL or compatible database server
 
-```bash
-git clone https://github.com/tuhinsunny/Hospital-Management-System.git
-cd Hospital-Management-System
-```
+## Setup Steps
 
-2️⃣ **Setup MySQL Database**
+1. **Clone or Download the Project**
+   - Copy the entire project folder to your machine.
+   - git clone https://github.com/tuhinsunny/Hospital-Management-System.git
 
-* Open MySQL terminal or GUI
-* Run the `hospital_db.sql` script:
 
-```sql
-source path/to/hospital_db.sql;
-```
+2. **Set Up the Database**
+   - Install MySQL.
+   - Open `sql/hospital_setup.sql` in a MySQL client or command line.
+   - Execute the script to create the database and tables.
 
-3️⃣ **Configure JDBC**
-Update your `HospitalManagementSystem.java` file with your MySQL credentials:
+3. **Configure Database Connection**
+    - Update database credentials in the Java source code if needed (url, username, password).
+    ```java
+    private static final String url = "jdbc:mysql://localhost:3306/hospital_db";
+    private static final String username = "root";
+    private static final String password = "yourpassword";
+    ```
+4. **Compile the Java Source Files**
+   - Open a terminal and navigate to the `src` directory.
+   - Run:
+     ```
+     javac HospitalManagementSystem/*.java
+     ```
 
-```java
-private static final String url = "jdbc:mysql://localhost:3306/hospital_db";
-private static final String username = "root";
-private static final String password = "yourpassword";
-```
+5. **Run the Application**
+   - In the same terminal, run:
+     ```
+     java HospitalManagementSystem.HospitalManagementSystem
+     ```
+
+6. **(Optional) Use an IDE**
+   - Import the project into IntelliJ IDEA, Eclipse, or NetBeans.
+   - Set the main class to `HospitalManagementSystem.HospitalManagementSystem`.
+
+## Notes
+- Ensure any required external libraries (JARs) are included in the classpath.
+- Update connection details if your database setup differs.
+
+
+
+
 
 
 
@@ -98,12 +121,12 @@ private static final String password = "yourpassword";
 
 ## 📸 Screenshots
 
-## Main Menu
+### Main Menu
 <p align="center">
   <img src="Main%20Menu.png" alt="Main Menu Screenshot" width="500"/>
 </p>
 
-## Database Schema
+### Database Schema
 <p align="center">
   <img src="Database_Schema.png" alt="Db Schema Screenshot" width="500"/>
 </p>
@@ -112,11 +135,13 @@ private static final String password = "yourpassword";
 
 ## 🎯 Why This Project Stands Out
 
-✅ **Clean, modular Java code** — easy to extend with new features
-✅ **SQL-backed persistent storage** — realistic data handling
-✅ **Static sample data** — instantly test without manual entry
-✅ **Practical real-world problem solving** — applicable to healthcare scenarios
-✅ **Git best practices** — meaningful commits and proper structure
+- ✅ **Clean, modular Java code** — easy to extend with new features
+- ✅ **SQL-backed persistent storage** — realistic data handling
+- ✅ **Static sample data** — instantly test without manual entry
+- ✅ **Practical real-world problem solving** — applicable to healthcare scenarios
+- ✅ **Git best practices** — meaningful commits and proper structure
+
+
 
 ---
 
