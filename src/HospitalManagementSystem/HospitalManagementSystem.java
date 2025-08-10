@@ -35,64 +35,69 @@ public class HospitalManagementSystem {
                 System.out.println("9. Cancel Appointment");
                 System.out.println("10. Exit");
                 System.out.print("Enter your choice: ");
-                int choice = scanner.nextInt();
-                scanner.nextLine();
-                switch(choice){
-                    case 1 :
-                        // Add Patient
-                        patient.addPatient();
-                        System.out.println();
-                        break;
-                    case 2 :
-                        // View Patients
-                        patient.viewPatients();
-                        System.out.println();
-                        break;
-                    case 3 :
-                        // Delete Patient
-                        System.out.print("Enter Patient ID to delete: ");
-                        int patientId = scanner.nextInt();
-                        patient.deletePatientById(patientId);
-                        System.out.println();
-                        break;
-                    case 4 :
-                        // Add Doctor
-                        doctor.addDoctor();
-                        System.out.println();
-                        break;
-                    case 5 :
-                        // View Doctors
-                        doctor.viewDoctors();
-                        System.out.println();
-                        break;
-                    case 6 :
-                        // Delete Doctor
-                        System.out.print("Enter Doctor ID to delete: ");
-                        int doctorId = scanner.nextInt();
-                        doctor.deleteDoctorById(doctorId);
-                        System.out.println();
-                        break;
-                    case 7  :
-                        // Book Appointment
-                        bookAppointment(patient, doctor, connection, scanner);
-                        System.out.println();
-                        break;
-                    case 8 :
-                        // View Appointments
-                        viewAppointments(connection, doctor, scanner);
-                        System.out.println();
-                        break;
-                    case 9 :
-                        cancelAppointment(connection, scanner);
-                        System.out.println();
-                        break;
-                    case 10 :
-                        System.out.println("Thank you for using Hospital Management System. Have a nice day!");
-                        return;
-                    default:
-                        System.out.println("Invalid choice. Please try again!!!");
+                try{
+                    int choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch(choice) {
+                        case 1:
+                            // Add Patient
+                            patient.addPatient();
+                            System.out.println();
+                            break;
+                        case 2:
+                            // View Patients
+                            patient.viewPatients();
+                            System.out.println();
+                            break;
+                        case 3:
+                            // Delete Patient
+                            System.out.print("Enter Patient ID to delete: ");
+                            int patientId = scanner.nextInt();
+                            patient.deletePatientById(patientId);
+                            System.out.println();
+                            break;
+                        case 4:
+                            // Add Doctor
+                            doctor.addDoctor();
+                            System.out.println();
+                            break;
+                        case 5:
+                            // View Doctors
+                            doctor.viewDoctors();
+                            System.out.println();
+                            break;
+                        case 6:
+                            // Delete Doctor
+                            System.out.print("Enter Doctor ID to delete: ");
+                            int doctorId = scanner.nextInt();
+                            doctor.deleteDoctorById(doctorId);
+                            System.out.println();
+                            break;
+                        case 7:
+                            // Book Appointment
+                            bookAppointment(patient, doctor, connection, scanner);
+                            System.out.println();
+                            break;
+                        case 8:
+                            // View Appointments
+                            viewAppointments(connection, doctor, scanner);
+                            System.out.println();
+                            break;
+                        case 9:
+                            cancelAppointment(connection, scanner);
+                            System.out.println();
+                            break;
+                        case 10:
+                            System.out.println("Thank you for using Hospital Management System. Have a nice day!");
+                            return;
+                        default:
+                            System.out.println("Invalid choice. Please try again!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please enter a number between 1 and 10.");
+                    scanner.nextLine(); // Clear the invalid input
+                    continue; // Skip to the next iteration of the loop
                 }
-
             }
 
         }catch(SQLException e){
