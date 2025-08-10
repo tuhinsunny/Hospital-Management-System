@@ -27,11 +27,12 @@ public class HospitalManagementSystem {
                 System.out.println("1. Add Patient");
                 System.out.println("2. View Patients");
                 System.out.println("3. Delete Patient");
-                System.out.println("4. View Doctors");
-                System.out.println("5. Book Appointment");
-                System.out.println("6. View Appointments");
-                System.out.println("7. Cancel Appointment");
-                System.out.println("8. Exit");
+                System.out.println("4. Add Doctor");
+                System.out.println("5. View Doctors");
+                System.out.println("6. Book Appointment");
+                System.out.println("7. View Appointments");
+                System.out.println("8. Cancel Appointment");
+                System.out.println("9. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
@@ -54,25 +55,30 @@ public class HospitalManagementSystem {
                         System.out.println();
                         break;
                     case 4 :
+                        // Add Doctor
+                        doctor.addDoctor();
+                        System.out.println();
+                        break;
+                    case 5 :
                         // View Doctors
                         doctor.viewDoctors();
                         System.out.println();
                         break;
-                    case 5  :
+                    case 6  :
                         // Book Appointment
                         bookAppointment(patient, doctor, connection, scanner);
                         System.out.println();
                         break;
-                    case 6 :
+                    case 7 :
                         // View Appointments
                         viewAppointments(connection, doctor, scanner);
                         System.out.println();
                         break;
-                    case 7 :
+                    case 8 :
                         cancelAppointment(connection, scanner);
                         System.out.println();
                         break;
-                    case 8 :
+                    case 9 :
                         System.out.println("Thank you for using Hospital Management System. Have a nice day!");
                         return;
                     default:

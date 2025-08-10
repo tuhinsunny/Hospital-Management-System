@@ -11,6 +11,27 @@ public class Doctor {
     public Doctor(Connection connection) {
         this.connection = connection;
     }
+    public void addDoctor(){
+        System.out.print("Enter Doctor Name: ");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        System.out.print("Enter Doctor Specialization: ");
+        String specialization = scanner.next();
+        try{
+            String query = "INSERT INTO doctors(name, specialization) VALUES(?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, specialization);
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Doctor added successfully.");
+            } else {
+                System.out.println("Failed to add doctor.");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public void viewDoctors(){
         String query = "SELECT * FROM doctors";
