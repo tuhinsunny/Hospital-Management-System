@@ -133,10 +133,11 @@ Hospital Management System/
 
 ---
 
-## 📽️ Project Demo Video
-<p align="center">
-  <video src="Project Console.mp4" width="500" controls></video>
-</p>
+## Project Demo Video
+
+Watch the demo of the Hospital Management System project here:  
+[Hospital Management System Demo](https://youtu.be/3yvmPrGB_n4)
+
 
 
 
