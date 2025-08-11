@@ -133,6 +133,13 @@ Hospital Management System/
 
 ---
 
+## 📽️ Project Demo Video
+<p align="center">
+  <video src="Project Console.mp4" width="500" controls></video>
+</p>
+
+
+
 ## 🎯 Why This Project Stands Out
 
 - ✅ **Clean, modular Java code** — easy to extend with new features
